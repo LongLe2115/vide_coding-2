@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - Quản lý thư viện</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container narrow">
+      <div class="card">
+        <div class="stack gap-8">
+          <div>
+            <div class="row align-center gap-10 wrap" style="justify-content: space-between">
+              <div class="row align-center gap-10">
+                <div class="logo" aria-hidden="true">LIB</div>
+                <div>
+                  <h1 class="h1" style="margin: 0">Quản lý thư viện</h1>
+                  <p class="muted" style="margin: 6px 0 0 0">Vui lòng đăng nhập để sử dụng hệ thống.</p>
+                </div>
+              </div>
+              <a class="btn" href="./help.html">Hướng dẫn</a>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <form id="loginForm" class="stack gap-10" autocomplete="on" novalidate>
+            <div class="grid gap-10">
+              <label class="field">
+                <span>Tên đăng nhập</span>
+                <input name="username" required placeholder="admin" inputmode="text" autocomplete="username" />
+              </label>
+
+              <label class="field">
+                <span>Mật khẩu</span>
+                <div class="row gap-10 align-center">
+                  <input
+                    name="password"
+                    id="passwordInput"
+                    type="password"
+                    required
+                    placeholder="admin"
+                    autocomplete="current-password"
+                    style="flex: 1"
+                  />
+                  <button class="btn" type="button" id="togglePwBtn" aria-label="Hiện hoặc ẩn mật khẩu">Hiện</button>
+                </div>
+              </label>
+            </div>
+
+            <button class="btn primary" type="submit" style="justify-content: center">Đăng nhập</button>
+
+            <div id="loginError" class="alert danger hidden"></div>
+            <div class="alert info">
+              <div><b>Tài khoản mẫu</b></div>
+              <div>- Admin: <code>admin</code> / <code>admin</code></div>
+              <div>- Thủ thư: <code>librarian</code> / <code>librarian</code></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <footer class="footer muted">Đăng nhập để tiếp tục</footer>
+    </main>
+
+    <script src="./js/storage.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      window.LibraryApp.init();
+      window.LibraryApp.requireLoggedOut();
+      window.LibraryApp.bindLogin(document.getElementById("loginForm"), document.getElementById("loginError"));
+
+      const pw = document.getElementById("passwordInput");
+      const btn = document.getElementById("togglePwBtn");
+      btn.addEventListener("click", () => {
+        const isHidden = pw.type === "password";
+        pw.type = isHidden ? "text" : "password";
+        btn.textContent = isHidden ? "Ẩn" : "Hiện";
+      });
+    </script>
+  </body>
+</html>
+

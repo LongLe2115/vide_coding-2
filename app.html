@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống - Quản lý thư viện</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">LIB</div>
+          <div>
+            <div class="brand-title">Quản lý thư viện</div>
+            <div class="muted small" id="whoami"></div>
+          </div>
+        </div>
+        <div class="row gap-10 wrap align-center">
+          <a class="btn" href="./help.html">Hướng dẫn</a>
+          <button class="btn danger" id="logoutBtn">Đăng xuất</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 14px">
+        <div class="toolbar">
+          <div class="left">
+            <div class="nav" id="nav"></div>
+          </div>
+          <div class="right">
+            <label class="field" style="min-width: 260px">
+              <span>Tìm nhanh</span>
+              <input id="quickSearch" placeholder="Tên sách / mã sách / mã độc giả..." />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid cols-2 gap-14" style="margin-top: 14px">
+        <section class="card" id="panelLeft"></section>
+        <section class="card" id="panelRight"></section>
+      </div>
+
+    </main>
+
+    <script src="./js/storage.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      window.LibraryApp.init();
+      window.LibraryApp.requireLoggedIn();
+      window.LibraryApp.mountApp({
+        navEl: document.getElementById("nav"),
+        whoEl: document.getElementById("whoami"),
+        logoutBtn: document.getElementById("logoutBtn"),
+        quickSearchEl: document.getElementById("quickSearch"),
+        leftEl: document.getElementById("panelLeft"),
+        rightEl: document.getElementById("panelRight"),
+      });
+    </script>
+  </body>
+</html>
+
